@@ -1,0 +1,29 @@
+# Top-level shared/config bits
+
+# Library naming and versioning
+LIB_VERS = 0
+SHLIB_NAME = libcidr.so.${LIB_VERS}
+SHLIB_LINK = libcidr.so
+
+# Define some destination directories
+# Where we think of ourselves as living
+PREFIX?=/usr/local
+CIDR_LIBDIR?=${PREFIX}/lib
+CIDR_BINDIR?=${PREFIX}/bin
+CIDR_INCDIR?=${PREFIX}/include
+CIDR_MANDIR?=${PREFIX}/man
+CIDR_DOCDIR?=${PREFIX}/share/libcidr/docs
+CIDR_EXDIR?=${PREFIX}/share/libcidr/examples
+
+# Where we install files to (this allows staging an install elsewhere
+# from where it will be run on a system)
+DESTDIR?=
+
+# A few programs
+ECHO?=echo
+MKDIR?=mkdir -pm 755
+INSTALL?=install -c
+LN?=ln
+GZIP?=gzip
+RM?=rm -f
+SED?=sed

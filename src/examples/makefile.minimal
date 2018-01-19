@@ -1,0 +1,9 @@
+# Minimal Makefile installed for examples
+CIDR_LIBDIR = %%CIDR_LIBDIR%%
+CIDR_INCDIR = %%CIDR_INCDIR%%
+
+%%PROG%%: %%PROG%%.c
+	cc -I${CIDR_INCDIR} -L${CIDR_LIBDIR} -o ${@} ${<} -lcidr
+
+clean:
+	rm -f %%PROG%%
