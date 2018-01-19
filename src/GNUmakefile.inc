@@ -49,7 +49,7 @@ def: all
 
 ${SHLIB_NAME}: ${SO_FILES}
 	@echo Linking ${SHLIB_NAME}...
-	${CC} -shared -Wl,-x -o ${@} -Wl,-soname,${SHLIB_NAME} \
+	${CC} -shared -Wl,-x -o ${@} -Wl,-install_name,${SHLIB_NAME} \
 			`${LORDER} ${SO_FILES} | ${TSORT}`
 	${LN} -sf ${SHLIB_NAME} ${SHLIB_LINK}
 
@@ -86,4 +86,3 @@ ${PROGNAME}: ${O_FILES} ${LCIDR}
 ${LCIDR}:
 	(cd ../.. && make)
 endif
-
