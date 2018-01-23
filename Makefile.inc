@@ -1,9 +1,16 @@
 # Top-level shared/config bits
 
+# OS config
+OS = $(shell uname)
+
 # Library naming and versioning
 LIB_VERS = 0
-SHLIB_NAME = libcidr.so.${LIB_VERS}
-SHLIB_LINK = libcidr.so
+SHLIB_NAME_PREFIX = libcidr.so
+ifeq ($(OS),Darwin)
+      SHLIB_NAME_PREFIX = libcidr.dylib
+endif
+SHLIB_NAME = ${SHLIB_NAME_PREFIX}.${LIB_VERS}
+SHLIB_LINK = ${SHLIB_NAME_PREFIX}
 
 # Define some destination directories
 # Where we think of ourselves as living

@@ -3,6 +3,15 @@
 # Library naming and versioning
 .include "${_DIRSRC}/../Makefile.inc"
 
+# OS config
+OS = $(shell uname)
+SHLIB_NAME_PREFIX = libcidr.so
+OS_SPECIFIC_FLAG = -soname
+ifeq ($(OS),Darwin)
+	SHLIB_NAME_PREFIX = libcidr.dylib
+	OS_SPECIFIC_FLAG = -install_name
+endif
+
 # Basic cc flags (turn on lots of seatbelts)
 C_WARNS = -Wall -Wstrict-prototypes -Wredundant-decls \
 		-Wmissing-prototypes -Wpointer-arith -Winline \
@@ -70,7 +79,7 @@ clean allclean:
 # These paths wind up relative to src/{test,examples}/*
 CFLAGS += -I../../../include
 L_FLAGS += -g -pipe -L../..
-LCIDR = ../../libcidr.so
+LCIDR = ../../${SHLIB_NAME_PREFIX}
 
 CLEAN_FILES = ${O_FILES} ${PROGNAME} *core .depend
 
